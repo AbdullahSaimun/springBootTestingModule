@@ -1,5 +1,6 @@
 package com.saimun.springboottesting1.studentprofile;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.saimun.springboottesting1.student.Student;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -21,6 +22,7 @@ public class StudentProfile {
 
 	@OneToOne
 	@JoinColumn(name = "student_id")
+	@JsonBackReference
 	private Student student;
 
 	public StudentProfile(String bio) {

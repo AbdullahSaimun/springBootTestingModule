@@ -1,6 +1,7 @@
 package com.saimun.springboottesting1.student;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.saimun.springboottesting1.school.School;
 import com.saimun.springboottesting1.studentprofile.StudentProfile;
 import jakarta.persistence.*;
@@ -31,11 +32,12 @@ public class Student {
 	private int age;
 
 	@OneToOne(mappedBy = "student")
+	@JsonManagedReference
 	private StudentProfile studentProfile;
 
 	@ManyToOne
 	@JoinColumn(name = "school_id")
-	@JsonBackReference
+	@JsonManagedReference
 	private School school;
 
 	public Student(Integer classId, String firstName, String lastName, String email, int age) {

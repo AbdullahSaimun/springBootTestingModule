@@ -1,5 +1,6 @@
 package com.saimun.springboottesting1.school;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.saimun.springboottesting1.student.Student;
 import jakarta.persistence.*;
@@ -23,7 +24,7 @@ public class School {
 	private String name;
 
 	@OneToMany(mappedBy = "school", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JsonManagedReference
+	@JsonBackReference
 	private List<Student> students;
 
 	public School(String name) {
