@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,4 +35,23 @@ public class StudentService {
 		);
 
 	}
+
+	public ResponseEntity<ResponseDTO> findStudentById(Integer id) {
+		return studentRepository.findById(id)
+				.map(student -> ResponseEntity.ok(
+						new ResponseDTO(
+								ResponseStatus.OK,
+								ResponseMessage.DATA_AVAILABLE,
+								studentMapper.fromStudentToStudentResponseDTO(student)
+						)
+				))
+				.orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND)
+						.body(new ResponseDTO(
+								ResponseStatus.NOT_FOUND,
+								ResponseMessage.NOT_FOUND,
+								"data not found"
+						))
+				);
+	}
+
 }
