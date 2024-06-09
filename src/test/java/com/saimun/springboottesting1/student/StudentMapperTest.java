@@ -1,8 +1,6 @@
 package com.saimun.springboottesting1.student;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,6 +14,16 @@ class StudentMapperTest {
 	@AfterEach
 	void tearDown() {
 		System.out.println("after test method");
+	}
+
+	@BeforeAll
+	static void beforeAll() {
+		System.out.println("before all method");
+	}
+
+	@AfterAll
+	static void afterAll() {
+		System.out.println("after all method");
 	}
 
 	@Test
