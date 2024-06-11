@@ -1,34 +1,29 @@
 package com.saimun.springboottesting1.student;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class StudentMapperTest {
 
+	StudentMapper studentMapper;
+
 	@BeforeEach
 	void setUp() {
-		System.out.println("before running");
-	}
-
-	@AfterEach
-	void tearDown() {
-		System.out.println("after test method");
-	}
-
-	@BeforeAll
-	static void beforeAll() {
-		System.out.println("before all method");
-	}
-
-	@AfterAll
-	static void afterAll() {
-		System.out.println("after all method");
+		studentMapper = new StudentMapper();
 	}
 
 	@Test
-	public void testMehodOne() {
-		System.out.println("test method");
-	}
+	void shoudStudentDtoToStudent() {
+		StudentDTO studentDTO = new StudentDTO("Abdulla","saimun",3,"abdullah@gmail.com",23,1);
+		Student student = studentMapper.toStudent(studentDTO);
+		assertEquals(student.getFirstName(),studentDTO.firstName());
+		assertEquals(student.getLastName(),studentDTO.lastName());
+		assertEquals(student.getClassId(),studentDTO.classId());
+		assertEquals(student.getEmail(),studentDTO.email());
+		assertNotNull(student.getSchool());
 
+	}
 }
