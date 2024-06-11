@@ -1,5 +1,6 @@
 package com.saimun.springboottesting1.student;
 
+import com.saimun.springboottesting1.school.School;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,5 +26,23 @@ class StudentMapperTest {
 		assertEquals(student.getEmail(),studentDTO.email());
 		assertNotNull(student.getSchool());
 
+	}
+
+	@Test
+	public void shouldMapStudentToStudentDTO() {
+		Student student = new Student();
+		student.setId(1);
+		student.setFirstName("firstName");
+		student.setLastName("lastName");
+		student.setClassId(1);
+		student.setEmail("abdulla@gmail.com");
+		student.setAge(33);
+		School school = new School();
+		school.setId(1);
+		student.setSchool(school);
+
+		StudentDTO dto = studentMapper.toStudentDTO(student);
+		assertEquals(dto.firstName(),student.getFirstName());
+		assertEquals(dto.lastName(),student.getLastName());
 	}
 }

@@ -25,4 +25,15 @@ public class StudentMapper {
 		student.setSchool(school);
 		return student;
 	}
+
+	public StudentDTO toStudentDTO(Student student) {
+		return new StudentDTO(
+				student.getFirstName(),
+				student.getLastName(),
+				student.getClassId(),
+				student.getEmail(),
+				student.getAge(),
+				student.getSchool().getId());
+
+	}
 }
